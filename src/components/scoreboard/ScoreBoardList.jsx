@@ -3,16 +3,42 @@ import ScoreBoardItem from './ScoreBoardItem'
 
 export default class ScoreBoardList extends React.Component {
 
-  render() {
-    let scoreBoardItems = [];
+  scoreBoardItems = [];
 
-    this.props.scoreBoard.forEach((item, index) => {
-      scoreBoardItems.push(<ScoreBoardItem key={index} order={item.order} value={item.team} clicks={item.clicks}/>);
+  constructor() {
+    super();
+
+    this.state = {scoreBoard: []};
+    this.getScoreBoard();
+  }
+
+  getScoreBoard() {
+    let headers = new Headers(),
+        init = {
+          method: 'GET',
+          headers: headers,
+          cache: 'default'
+        },
+        allScoresUrl = 'https://klikuj.herokuapp.com/api/v1/leaderboard';
+
+    fetch(allScoresUrl, init).then(res => {
+      return res.json();
+    }).then(jsonResponse => {
+      this.setState({scoreBoard: jsonResponse});
+    }).catch(err => {
+      console.error(err);
+    });
+  }
+
+  render() {
+    this.state.scoreBoard.forEach((item, index) => {
+      this.scoreBoardItems.push(<ScoreBoardItem key={index} order={item.order} value={item.team}
+                                                clicks={item.clicks}/>);
     });
 
     return (
         <ul>
-          {scoreBoardItems}
+          {this.scoreBoardItems}
         </ul>
     );
   }
