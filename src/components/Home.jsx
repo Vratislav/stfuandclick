@@ -1,7 +1,5 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
-import ClickButton from './click/ClickButton';
-import ClickInput from './click/ClickInput';
 import ScoreBoardTable from "./scoreboard/ScoreBoardTable";
 
 export class Home extends React.Component {
