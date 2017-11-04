@@ -1,13 +1,47 @@
 import * as React from 'react';
-import ClickButton from "./click/ClickButton";
-import ClickCounter from "./click/ClickCounter";
+import { ClickCounter } from "./click/ClickCounter";
 
 export class Team extends React.Component {
   teamName;
+  session;
 
   constructor({match}) {
     super(...match);
     this.teamName = match.params.team;
+    this.session = Date.now();
+    this.state = {clicks: {}}
+  }
+
+  componentWillMount() {
+    this.handleClick();
+  }
+
+  handleClick() {
+    let headers = new Headers({'Content-Type': 'application/json'}),
+        init = {
+          method: 'POST',
+          headers: headers,
+          cache: 'default',
+          body: JSON.stringify({
+            "team": this.teamName,
+            "session": this.session
+          })
+        },
+        klikUrl = 'https://klikuj.herokuapp.com/api/v1/klik';
+
+    fetch(klikUrl, init).then(res => {
+
+      return res.json();
+
+    }).then(jsonResponse => {
+
+      this.setState({
+        clicks: jsonResponse
+      })
+
+    }).catch(err => {
+      console.error(err);
+    });
   }
 
   render() {
@@ -25,8 +59,10 @@ export class Team extends React.Component {
 
           <div className="app-holder">
             <div className="app-holder-content">
-              <ClickButton label={"Click!"}/>
-              <ClickCounter/>
+              <button className="btn btn-primary btn-block" onClick={this.handleClick.bind(this)}>
+                Click!
+              </button>
+              <ClickCounter yourClicks={this.state.clicks.your_clicks} teamClicks={this.state.clicks.team_clicks}/>
             </div>
           </div>
         </div>
