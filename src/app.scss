@@ -199,6 +199,8 @@ a {
 }
 
 .btn {
+  text-decoration: none;
+
   &-primary {
     background-color: $brand-primary;
     border-color: $brand-primary;
