@@ -1,8 +1,8 @@
 import * as React from 'react';
-import ScoreBoardItem from './ScoreBoardItem'
+import ScoreBoardRow from "./ScoreBoardRow";
 import PropTypes from 'prop-types';
 
-export default class ScoreBoardList extends React.Component {
+export default class ScoreBoardTable extends React.Component {
 
   constructor() {
     super();
@@ -22,15 +22,18 @@ export default class ScoreBoardList extends React.Component {
         allScoresUrl = 'https://klikuj.herokuapp.com/api/v1/leaderboard';
 
     fetch(allScoresUrl, init).then(res => {
+
       return res.json();
+
     }).then(jsonResponse => {
+
       let scoreBoard = jsonResponse.slice(this.props.start, this.props.count).map((score, index) => {
         return (
-            <ScoreBoardItem key={index} order={score.order} value={score.team} clicks={score.clicks}/>
+            <ScoreBoardRow key={index} order={score.order} team={score.team} clicks={score.clicks}/>
         );
       });
-
       this.setState({scoreBoard: scoreBoard});
+
     }).catch(err => {
       console.error(err);
     });
@@ -38,15 +41,24 @@ export default class ScoreBoardList extends React.Component {
 
   render() {
     return (
-        <ul>
-          {this.state.scoreBoard}
-        </ul>
+        <table className="table">
+          <thead>
+          <tr>
+            <th> </th>
+            <th className="text-uppercase">Team</th>
+            <th className="text-right text-uppercase">Clicks</th>
+          </tr>
+          </thead>
+          <tbody>
+            {this.state.scoreBoard}
+          </tbody>
+        </table>
     );
   }
 
 }
 
-ScoreBoardList.propTypes = {
+ScoreBoardTable.propTypes = {
   start: PropTypes.number.isRequired,
   count: PropTypes.number.isRequired,
 };

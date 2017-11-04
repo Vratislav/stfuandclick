@@ -4,10 +4,10 @@ export default class ClickInput extends React.Component {
 
   render() {
     return (
-        <span>
+        <div className="col-sm-7">
           <label>Enter your team name:</label>
-          <input type={this.props.type} placeholder={this.props.placeholder} />
-        </span>
+          <input type={this.props.type} placeholder={this.props.placeholder} className="form-control"/>
+        </div>
     );
   }
 

@@ -1,0 +1,211 @@
+$brand-primary: #468ee5;
+$bg-color: #f2f2f2;
+$bg-app: #fff;
+$light-color: #b1b1b1;
+$tr-odd-bg: #dbe9fa;
+$tr-even-bg: #ecf4fd;
+
+body {
+  background-color: $bg-color;
+  font-size: 16px;
+}
+
+a {
+  color: $brand-primary;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.app {
+  &-header {
+    background-color: $brand-primary;
+
+    text-align: center;
+  }
+
+  &-title {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.25em;
+    text-transform: uppercase;
+
+    margin: 0;
+    padding: 5px 0;
+  }
+
+  &-holder {
+    background-color: $bg-app;
+    border: 3px solid $brand-primary;
+    border-radius: 10px;
+
+    max-width: 500px;
+    margin: 50px auto;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    &-content {
+      padding-left: 12px;
+      padding-right: 12px;
+      margin-bottom: 50px;
+    }
+  }
+
+  &-claim {
+    margin: 25px 0 15px;
+
+    font-size: 0.875em;
+    text-align: center;
+    font-style: italic;
+  }
+
+  &-footer {
+    font-size: 0.875em;
+    font-style: italic;
+  }
+
+  label {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .form-control {
+    box-shadow: none;
+
+    &:focus {
+      border-color: $brand-primary;
+    }
+  }
+}
+
+// Protože Bootstrap, tak musíme takhle hnusně řetězit styly tabulky...
+.scoreboard {
+  .table {
+    > thead {
+      > tr {
+        > th {
+          color: $light-color;
+          font-size: 0.875em;
+          border-bottom: none;
+
+          &:first-child {
+            padding-left: 12px;
+          }
+
+          &:last-child {
+            padding-right: 12px;
+          }
+        }
+      }
+    }
+    > tbody {
+      > tr {
+        > td {
+          font-weight: 700;
+
+          border: none;
+          padding: 8px;
+
+          &:first-child {
+            padding-left: 12px;
+            padding-right: 20px;
+            width: 60px;
+          }
+
+          &:last-child {
+            padding-right: 12px;
+          }
+        }
+
+        &:nth-child(odd) {
+          td {
+            background-color: $tr-odd-bg;
+          }
+        }
+
+        &:nth-child(even) {
+          td {
+            background-color: $tr-even-bg;
+          }
+        }
+      }
+    }
+  }
+
+  &-heading {
+    min-height: 58px;
+    position: relative;
+
+    .ribbon {
+      width: auto;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      font-size: 1em;
+
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        bottom: -12px;
+        border: 20.5px solid #3e7cc3;
+        z-index: 1;
+      }
+
+      &:before {
+        left: -60px;
+        border-right-width: 50px;
+        border-left-color: transparent;
+      }
+
+      &:after {
+        right: -60px;
+        border-left-width: 50px;
+        border-right-color: transparent;
+      }
+
+      h2 {
+        background-color: $brand-primary;
+        font-size: 1em;
+        color: #ffffff;
+
+        margin: 0;
+        padding: 12px 27px;
+
+        position: relative;
+        z-index: 2;
+      }
+    }
+  }
+}
+
+.btn {
+  &-primary {
+    background-color: $brand-primary;
+    border-color: $brand-primary;
+
+    font-size: 2.0625em;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    &:hover {
+      border-color: $brand-primary;
+      background-color: lighten($brand-primary, 5%);
+    }
+
+    &:active,
+    &:focus {
+      border-color: $brand-primary;
+      background-color: darken($brand-primary, 5%);
+      outline: none;
+
+      &:hover {
+        outline: none;
+      }
+    }
+  }
+}
