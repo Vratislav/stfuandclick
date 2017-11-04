@@ -1,13 +1,11 @@
-import React, {Component} from 'react';
-import ClickButton from './components/click/ClickButton';
-import ClickInput from './components/click/ClickInput';
-import ScoreBoardTable from "./components/scoreboard/ScoreBoardTable";
-import 'bootstrap/dist/css/bootstrap.css';
-import './App.css';
+import * as React from 'react';
+import ClickButton from './click/ClickButton';
+import ClickInput from './click/ClickInput';
+import ScoreBoardTable from "./scoreboard/ScoreBoardTable";
 
-class App extends Component {
-
+export class App extends React.Component {
   render() {
+
     return (
         <div className="app">
           <header className="app-header">
@@ -16,7 +14,7 @@ class App extends Component {
           <div className="container">
             <div className="text-center">
               <div className="app-claim app-claim-top">
-                "It's really simple, you just need to click as fast as you can."<br />
+                "It's really simple, you just need to click as fast as you can."<br/>
                 <div>- anonymous</div>
               </div>
             </div>
@@ -42,7 +40,6 @@ class App extends Component {
           </div>
         </div>
     );
+
   }
 }
-
-export default App;
