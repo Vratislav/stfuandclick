@@ -14,6 +14,12 @@ class App extends Component {
             <h1 className="app-title">StfuAndClick.com</h1>
           </header>
           <div className="container">
+            <div className="text-center">
+              <div className="app-claim app-claim-top">
+                "It's really simple, you just need to click as fast as you can."<br />
+                <div>- anonymous</div>
+              </div>
+            </div>
             <div className="app-holder">
               <div className="app-holder-content">
                 <div className="row">
