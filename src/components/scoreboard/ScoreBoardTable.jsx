@@ -13,6 +13,10 @@ export default class ScoreBoardTable extends React.Component {
   }
 
   componentWillMount() {
+    this.getScoreBoard();
+  }
+
+  getScoreBoard() {
     let headers = new Headers(),
         init = {
           method: 'GET',

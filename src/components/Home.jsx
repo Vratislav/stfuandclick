@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
 import ScoreBoardTable from "./scoreboard/ScoreBoardTable";
+import BottomClaim from './layout/BottomClaim';
 
 export class Home extends React.Component {
   constructor() {
@@ -23,7 +24,7 @@ export class Home extends React.Component {
             </div>
           </div>
           <div className="app-holder">
-            <div className="app-holder-content">
+            <div className="app-holder-content app-holder-content-b-margin">
               <div className="row">
                 <div className="col-sm-7">
                   <label>Enter your team name:</label>
@@ -43,9 +44,7 @@ export class Home extends React.Component {
               </div>
               <ScoreBoardTable start={0} count={10}/>
             </div>
-            <div className="app-claim">
-              Want to be top? STFU and click!
-            </div>
+            <BottomClaim/>
           </div>
         </div>
     );

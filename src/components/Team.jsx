@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { ClickCounter } from "./click/ClickCounter";
+import {ClickCounter} from "./click/ClickCounter";
+import ScoreBoardTable from "./scoreboard/ScoreBoardTable";
+import BottomClaim from "./layout/BottomClaim";
 
 export class Team extends React.Component {
   teamName;
@@ -37,7 +39,7 @@ export class Team extends React.Component {
 
       this.setState({
         clicks: jsonResponse
-      })
+      });
 
     }).catch(err => {
       console.error(err);
@@ -64,6 +66,10 @@ export class Team extends React.Component {
               </button>
               <ClickCounter yourClicks={this.state.clicks.your_clicks} teamClicks={this.state.clicks.team_clicks}/>
             </div>
+            <div className="scoreboard">
+              <ScoreBoardTable start={0} count={10}/>
+            </div>
+            <BottomClaim/>
           </div>
         </div>
     );
