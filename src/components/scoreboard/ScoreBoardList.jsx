@@ -1,18 +1,18 @@
 import * as React from 'react';
 import ScoreBoardItem from './ScoreBoardItem'
+import PropTypes from 'prop-types';
 
 export default class ScoreBoardList extends React.Component {
-
-  scoreBoardItems = [];
 
   constructor() {
     super();
 
-    this.state = {scoreBoard: []};
-    this.getScoreBoard();
+    this.state = {
+      scoreBoard: []
+    };
   }
 
-  getScoreBoard() {
+  componentWillMount() {
     let headers = new Headers(),
         init = {
           method: 'GET',
@@ -24,23 +24,29 @@ export default class ScoreBoardList extends React.Component {
     fetch(allScoresUrl, init).then(res => {
       return res.json();
     }).then(jsonResponse => {
-      this.setState({scoreBoard: jsonResponse});
+      let scoreBoard = jsonResponse.slice(this.props.start, this.props.count).map((score, index) => {
+        return (
+            <ScoreBoardItem key={index} order={score.order} value={score.team} clicks={score.clicks}/>
+        );
+      });
+
+      this.setState({scoreBoard: scoreBoard});
     }).catch(err => {
       console.error(err);
     });
   }
 
   render() {
-    this.state.scoreBoard.forEach((item, index) => {
-      this.scoreBoardItems.push(<ScoreBoardItem key={index} order={item.order} value={item.team}
-                                                clicks={item.clicks}/>);
-    });
-
     return (
         <ul>
-          {this.scoreBoardItems}
+          {this.state.scoreBoard}
         </ul>
     );
   }
 
 }
+
+ScoreBoardList.propTypes = {
+  start: PropTypes.number.isRequired,
+  count: PropTypes.number.isRequired,
+};

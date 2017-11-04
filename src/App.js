@@ -18,7 +18,7 @@ class App extends Component {
           </p>
           <div className="container">
             <div className="scoreboard">
-              <ScoreBoardList/>
+              <ScoreBoardList start={0} count={10}/>
             </div>
           </div>
         </div>
