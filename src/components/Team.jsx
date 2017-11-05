@@ -5,12 +5,11 @@ import BottomClaim from "./layout/BottomClaim";
 
 export class Team extends React.Component {
   teamName;
-  session;
 
   constructor({match}) {
     super(...match);
     this.teamName = match.params.team;
-    this.state = {clicks: {}};
+    this.state = {clicks: {}, session: Date.now()};
   }
 
   componentWillMount() {
@@ -25,7 +24,7 @@ export class Team extends React.Component {
           cache: 'default',
           body: JSON.stringify({
             "team": this.teamName,
-            "session": this.props.session
+            "session": this.state.session
           })
         },
         klikUrl = 'https://klikuj.herokuapp.com/api/v1/klik';
