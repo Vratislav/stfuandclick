@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import {formatNumber} from "../../helpers/numbers";
 
 export default class ScoreBoardRow extends React.Component {
 
@@ -8,7 +9,7 @@ export default class ScoreBoardRow extends React.Component {
         <tr>
           <td className="text-right">{this.props.order}</td>
           <td>{this.props.team}</td>
-          <td className="text-right">{this.props.clicks}</td>
+          <td className="text-right">{formatNumber(this.props.clicks)}</td>
         </tr>
     );
   }
