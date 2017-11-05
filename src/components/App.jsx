@@ -1,11 +1,16 @@
 import * as React from 'react';
+import {connect} from 'react-redux';
 import {Route, Switch} from 'react-router-dom';
 import {Home} from "./Home";
 import {Team} from "./Team";
+import {setNewSession} from "../actions/index";
 
-export class App extends React.Component {
+class AppComponent extends React.Component {
+  componentWillMount() {
+    this.props.setNewSession();
+  }
+
   render() {
-
     return (
         <div className="app">
           <header className="app-header">
@@ -22,3 +27,22 @@ export class App extends React.Component {
 
   }
 }
+
+const mapStateToProps = state => {
+  return { session: state };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setNewSession: () => {
+      dispatch(setNewSession())
+    }
+  };
+};
+
+const App = connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(AppComponent);
+
+export default App;

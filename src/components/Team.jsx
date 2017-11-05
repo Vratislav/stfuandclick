@@ -10,8 +10,7 @@ export class Team extends React.Component {
   constructor({match}) {
     super(...match);
     this.teamName = match.params.team;
-    this.session = Date.now();
-    this.state = {clicks: {}}
+    this.state = {clicks: {}};
   }
 
   componentWillMount() {
@@ -26,7 +25,7 @@ export class Team extends React.Component {
           cache: 'default',
           body: JSON.stringify({
             "team": this.teamName,
-            "session": this.session
+            "session": this.props.session
           })
         },
         klikUrl = 'https://klikuj.herokuapp.com/api/v1/klik';
