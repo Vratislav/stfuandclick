@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ScoreBoardRow from "./ScoreBoardRow";
 import PropTypes from 'prop-types';
+import {api} from "../../constants/index";
 
 export default class ScoreBoardTable extends React.Component {
 
@@ -23,7 +24,7 @@ export default class ScoreBoardTable extends React.Component {
           headers: headers,
           cache: 'default'
         },
-        allScoresUrl = 'https://klikuj.herokuapp.com/api/v1/leaderboard';
+        allScoresUrl = api.scoreboard;
 
     fetch(allScoresUrl, init).then(res => {
 

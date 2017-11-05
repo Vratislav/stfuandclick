@@ -2,6 +2,7 @@ import * as React from 'react';
 import {ClickCounter} from "./click/ClickCounter";
 import ScoreBoardTable from "./scoreboard/ScoreBoardTable";
 import BottomClaim from "./layout/BottomClaim";
+import {api} from "../constants/index";
 
 export class Team extends React.Component {
   teamName;
@@ -27,7 +28,7 @@ export class Team extends React.Component {
             "session": this.state.session
           })
         },
-        klikUrl = 'https://klikuj.herokuapp.com/api/v1/klik';
+        klikUrl = api.click;
 
     fetch(klikUrl, init).then(res => {
 
