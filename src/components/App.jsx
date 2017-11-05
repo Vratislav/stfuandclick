@@ -22,6 +22,9 @@ class AppComponent extends React.Component {
               <Route path="/:team" component={Team}/>
             </Switch>
           </div>
+          <footer className="app-footer container-fluid text-center">If you don't like this page, it's&nbsp;
+            <a href="https://applifting.cz/" target="_blank" rel="noopener noreferrer">Applifting</a>'s fault
+          </footer>
         </div>
     );
 
