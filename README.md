@@ -18,3 +18,6 @@ $ yarn build
 ```
 
 <em>(`npm` instead of `yarn` should work fine too)</em>
+
+
+Heroku demo: https://stfuandclick-dusan.herokuapp.com/
