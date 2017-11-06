@@ -6,7 +6,7 @@ export default class ScoreBoardRow extends React.Component {
 
   render() {
     return (
-        <tr>
+        <tr className={this.props.className}>
           <td className="text-right">{this.props.order}</td>
           <td>{this.props.team}</td>
           <td className="text-right">{formatNumber(this.props.clicks)}</td>

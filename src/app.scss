@@ -161,6 +161,14 @@ a {
             background-color: $tr-even-bg;
           }
         }
+
+        &.active {
+          > td {
+            background-color: $brand-primary;
+            font-size: 2em;
+            color: #fff;
+          }
+        }
       }
     }
   }

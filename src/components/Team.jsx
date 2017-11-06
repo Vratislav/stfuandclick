@@ -6,6 +6,7 @@ import {api} from "../constants/index";
 
 export class Team extends React.Component {
   teamName;
+  reload;
 
   constructor({match}) {
     super(...match);
@@ -39,6 +40,7 @@ export class Team extends React.Component {
       this.setState({
         clicks: jsonResponse
       });
+      this.reload = Date.now();
 
     }).catch(err => {
       console.error(err);
@@ -66,7 +68,7 @@ export class Team extends React.Component {
               <ClickCounter yourClicks={this.state.clicks.your_clicks} teamClicks={this.state.clicks.team_clicks}/>
             </div>
             <div className="scoreboard">
-              <ScoreBoardTable start={0} count={10}/>
+              <ScoreBoardTable count={7} team={this.teamName} reload={this.reload}/>
             </div>
             <BottomClaim/>
           </div>
