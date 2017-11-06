@@ -4,6 +4,7 @@ import ScoreBoardTable from "./scoreboard/ScoreBoardTable";
 import BottomClaim from "./layout/BottomClaim";
 import {api} from "../constants/index";
 import {connect} from 'react-redux';
+import {clicks} from "../actions/index";
 
 export class TeamComponent extends React.Component {
   teamName;
@@ -27,7 +28,7 @@ export class TeamComponent extends React.Component {
           cache: 'default',
           body: JSON.stringify({
             "team": this.teamName,
-            "session": this.props.session
+            "session": this.props.store.session
           })
         },
         klikUrl = api.click;
@@ -38,9 +39,7 @@ export class TeamComponent extends React.Component {
 
     }).then(jsonResponse => {
 
-      this.setState({
-        clicks: jsonResponse
-      });
+      this.props.clicks(jsonResponse);
       this.reload = Date.now();
 
     }).catch(err => {
@@ -66,7 +65,7 @@ export class TeamComponent extends React.Component {
               <button className="btn btn-primary btn-block" onClick={this.handleClick.bind(this)}>
                 Click!
               </button>
-              <ClickCounter yourClicks={this.state.clicks.your_clicks} teamClicks={this.state.clicks.team_clicks}/>
+              <ClickCounter yourClicks={this.props.store.clicks.your_clicks} teamClicks={this.props.store.clicks.team_clicks}/>
             </div>
             <div className="scoreboard">
               <ScoreBoardTable count={7} team={this.teamName} reload={this.reload}/>
@@ -79,11 +78,20 @@ export class TeamComponent extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { session: state };
+  return { store: state };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    clicks: count => {
+      dispatch(clicks(count))
+    }
+  };
 };
 
 const Team = connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(TeamComponent);
 
 export default Team;

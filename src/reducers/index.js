@@ -1,10 +1,25 @@
-import {NEW_SESSION} from '../constants';
+import * as constants from '../constants';
+import {combineReducers} from 'redux';
 
-export const session = (state, action) => {
+const session = (state = '', action) => {
   switch (action.type) {
-    case NEW_SESSION:
+    case constants.NEW_SESSION:
       return Date.now();
     default:
       return state;
   }
 };
+
+const clicks = (state = 0, action) => {
+  switch (action.type) {
+    case constants.CLICK:
+      return action.count;
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({
+  session,
+  clicks
+});
