@@ -11,6 +11,8 @@ export default class ScoreBoardTable extends React.Component {
     this.state = {
       scoreBoard: []
     };
+
+    this.getScoreBoard();
   }
 
   getScoreBoard() {

@@ -3,8 +3,9 @@ import {ClickCounter} from "./click/ClickCounter";
 import ScoreBoardTable from "./scoreboard/ScoreBoardTable";
 import BottomClaim from "./layout/BottomClaim";
 import {api} from "../constants/index";
+import {connect} from 'react-redux';
 
-export class Team extends React.Component {
+export class TeamComponent extends React.Component {
   teamName;
   reload;
 
@@ -26,7 +27,7 @@ export class Team extends React.Component {
           cache: 'default',
           body: JSON.stringify({
             "team": this.teamName,
-            "session": this.state.session
+            "session": this.props.session
           })
         },
         klikUrl = api.click;
@@ -76,3 +77,13 @@ export class Team extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return { session: state };
+};
+
+const Team = connect(
+    mapStateToProps
+)(TeamComponent);
+
+export default Team;
