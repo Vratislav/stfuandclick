@@ -42,7 +42,7 @@ export class Home extends React.Component {
                   <strong className="ribbon-content"><h2>TOP 10 Clickers</h2></strong>
                 </div>
               </div>
-              <ScoreBoardTable start={0} count={10} reload={false}/>
+              <ScoreBoardTable start={0} count={10} reload={"false"}/>
             </div>
             <BottomClaim/>
           </div>
