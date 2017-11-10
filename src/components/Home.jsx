@@ -3,6 +3,15 @@ import {Link} from 'react-router-dom';
 import ScoreBoardTable from "./scoreboard/ScoreBoardTable";
 import BottomClaim from './layout/BottomClaim';
 
+// Ostatni poznamky
+// + za to ze to hezky funguje
+// + za to ze commity jsou vicemene atomicke a kazdy commit dela nakou konkretni vec
+// maly - za cestinu v commit msg
+// + za to ze jsis pridal gulp, kdyz si ho potreboval, mikro minus za to, ze sis neejectnul aplikaci a nepouzil webpack, nad kterym je to cele postavene
+// + je to responzivni, kodovani uplne neumim ohodnotit. Ale jsou kodovany i ribonny a ostatni frajerinky, coz  ocenuji. Detail necham na @PAČ
+// - nebyl pouzit typescript
+// Je videt docela dobre pochopeni reactu, u reduxu se mi zda, ze je to slabsi.
+
 export class Home extends React.Component {
   constructor() {
     super();

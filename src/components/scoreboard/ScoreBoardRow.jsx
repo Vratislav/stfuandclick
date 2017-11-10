@@ -16,6 +16,7 @@ export default class ScoreBoardRow extends React.Component {
 
 }
 
+//+ za sanity checky
 ScoreBoardRow.propTypes = {
   team: PropTypes.string.isRequired,
   order: PropTypes.number.isRequired,

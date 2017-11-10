@@ -31,7 +31,8 @@ export default class ScoreBoardTable extends React.Component {
     }).then(jsonResponse => {
 
       let start = this.props.start;
-
+      // - kod bez komentaru, pritom ta logika je docela slozita nize,
+      // Mozna by bylo lepsi zrefaktorovat do metody? Kod ma tendenci resit nekolik koncernu najednou (fetching, transforming rendering)
       if (this.props.team) {
         let teamPosition;
         jsonResponse.forEach((score, index) => {
@@ -51,6 +52,8 @@ export default class ScoreBoardTable extends React.Component {
         }
       }
 
+      // - ukladani HTML do state misto dat. Mixing of concerns
+      // - V redux aplikacy by se mel pouzivat redux store a ne react state.
       let scoreBoard = jsonResponse.slice(start, start + this.props.count).map((score, index) => {
         return (
             <ScoreBoardRow
@@ -70,6 +73,7 @@ export default class ScoreBoardTable extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // - nebylo by lepsi skrze dispatch reload akce?
     if (this.props.reload !== nextProps.reload || typeof this.props.reload === 'undefined') {
       this.getScoreBoard();
     }

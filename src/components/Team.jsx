@@ -7,12 +7,15 @@ import {connect} from 'react-redux';
 import {clicks} from "../actions/index";
 
 export class TeamComponent extends React.Component {
+  // -- promenne primo v react componente. Pokud se zmeni props, tak mas smolika a teamName by se neaktulizoval, ne?
   teamName;
   reload;
 
   constructor({match}) {
+    // + za demonstraci dekonstrukce
     super(...match);
     this.teamName = match.params.team;
+    // - state by se mel drzet v redux store!
     this.state = {clicks: {}, session: Date.now()};
   }
 
@@ -21,6 +24,7 @@ export class TeamComponent extends React.Component {
   }
 
   handleClick() {
+
     let headers = new Headers({'Content-Type': 'application/json'}),
         init = {
           method: 'POST',
@@ -76,6 +80,8 @@ export class TeamComponent extends React.Component {
     );
   }
 }
+
+// - Tak trosku se vytratili konteinery a state ve store, vlastne ho tam moc neni. Vsechno se taha a resi v ramci komponent az na pocet kliku, ktery se taha prez store.
 
 const mapStateToProps = state => {
   return { store: state };
